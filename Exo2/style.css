@@ -1,0 +1,37 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+body {
+    height: 100vh;
+  }
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin : 10%;
+  width: 440px;
+}
+
+.carre{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  background-color: hsl(113, 29%, 41%);
+  cursor: pointer;
+}
+
+.carre:nth-child(2n) {
+  margin-left: auto;
+}
+
+.clicked {
+  background-color: #d45252;
+  transform: scale(0.9);
+  rotate: 320deg;
+}
