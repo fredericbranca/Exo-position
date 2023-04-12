@@ -17,8 +17,7 @@ document.addEventListener('keydown', (event)=> {
         board.appendChild(newBlock)
     }
 
-    if (event.key === "ArrowUp") {
-        console.log("ArrowUp");
+    if (event.key === "ArrowUp" && board.hasChildNodes()) {
         board.removeChild(board.lastChild);
     }
 })
