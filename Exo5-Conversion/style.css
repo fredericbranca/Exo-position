@@ -19,10 +19,26 @@
 
 .conversion {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 600px;
     height: 600px;
     margin-top: 200px;
-    background-color: rgba(255, 255, 255, 0.368);;
+    background-color: rgba(6, 75, 144, 0.221);
+    color: white;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+#input {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.champ {
+  height: 35px;
+  width: 120px;
 }
