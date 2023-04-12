@@ -1,8 +1,39 @@
+function statutPartie(joueur, boxs) {
+
+  //vérifie si la partie est gagnante
+  if (boxs[0].innerHTML == joueur && boxs[1].innerHTML == joueur && boxs[2].innerHTML == joueur) {
+    return fini = true;
+  }
+  if (boxs[3].innerHTML == joueur && boxs[4].innerHTML == joueur && boxs[5].innerHTML == joueur) {
+    return fini = true;
+  }
+  if (boxs[6].innerHTML == joueur && boxs[7].innerHTML == joueur && boxs[8].innerHTML == joueur) {
+    return fini = true;
+  }
+  if (boxs[0].innerHTML == joueur && boxs[3].innerHTML == joueur && boxs[6].innerHTML == joueur) {
+    return fini = true;
+  }
+  if (boxs[1].innerHTML == joueur && boxs[4].innerHTML == joueur && boxs[7].innerHTML == joueur) {
+    return fini = true;
+  }
+  if (boxs[2].innerHTML == joueur && boxs[5].innerHTML == joueur && boxs[8].innerHTML == joueur) {
+    return fini = true;
+  }
+  if (boxs[0].innerHTML == joueur && boxs[4].innerHTML == joueur && boxs[8].innerHTML == joueur) {
+    return fini = true;
+  }
+  if (boxs[2].innerHTML == joueur && boxs[4].innerHTML == joueur && boxs[6].innerHTML == joueur) {
+    return fini = true;
+  }
+  else return fini = false;
+
+}
+
 function main() {
   const h1 = document.createElement("h1");
   const p = document.createElement("p");
-  h1.innerText = "Le jeu du Morpion";
-  p.innerText = "Joueur X peut commencer à jouer";
+  h1.innerHTML = "Le jeu du Morpion";
+  p.innerHTML = "Joueur X peut commencer à jouer";
   statut.appendChild(h1);
   statut.appendChild(p);
 
@@ -14,21 +45,37 @@ function main() {
   for (let i = 0; i < 9; i++) {
 
       boxs[i].addEventListener("click", function () {
+        
+        if (fini == false) {
+          //vérifie si la case a déjà été clické 
+          if (boxs[i].innerHTML == joueur[0] || boxs[i].innerHTML == joueur[1]) {
+            p.innerHTML = "Case occupée, c'est à vous joueur " + joueur[tour] + " !";
+          }
+          else {
+            //choix de la case du joueur X ou O
+            boxs[i].innerHTML = joueur[tour];
+      
+            
+            fini = statutPartie(joueur[tour], section.querySelectorAll(".carre"));
+            if (fini) {
+              h1.innerHTML = "Joueur " + joueur[tour] + " a gagné la partie !"; 
+              p.innerHTML = "ajouter clic rejouer";
 
-        if (boxs[i].innterText === "X" || boxs[i].innterText === "O") {
-          p.innerText = "Case occupée, c'est à vous joueur " + joueur[tour] + " !";
-          statut.appendChild(p);
-        }
-        else {
-          boxs[i].innerHTML = joueur[tour];
+            }
+            else{
+              tour++;
+              tour = tour % 2;
+              console.log(fini);
 
-          tour++;
-          tour = tour % 2;
-          p.innerText = "Au joueur " + joueur[tour] + " de jouer";
-          statut.appendChild(p);
+              p.innerHTML = "Au joueur " + joueur[tour] + " de jouer";
+            }
+            
+            
+          }
         }
-    })
-  }
+      })
+    }
+  
 }
 
 /* ----------------------------------------------- */
