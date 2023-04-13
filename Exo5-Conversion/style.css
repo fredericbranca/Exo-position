@@ -1,31 +1,33 @@
+/* Réinitialise les marges, paddings */
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
 
-  body {
-    height: 100vh;
+/* Visuel de la page */
+body {
+    height: 100vh; 
     background: url(background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: left;
     text-align: center;
-  }
+}
 
+/* Met le conteneur principal en ligne */
 #page {
-    display: inline-block;
+    display: inline-block; 
 }
 
 .conversion {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column; /* empile les lignes */
+    justify-content: center; 
     width: 600px;
     height: 600px;
     margin-top: 200px;
-    background-color: rgba(6, 75, 144, 0.221);
+    background-color: rgb(243 246 249 / 16%);
     color: white;
 }
 
