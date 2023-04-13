@@ -1,33 +1,30 @@
-function statutPartie(joueur, boxs) {
-
   //vérifie si la partie est gagnante
-  if (boxs[0].innerHTML == joueur && boxs[1].innerHTML == joueur && boxs[2].innerHTML == joueur) {
-    return fini = true;
+  function statutPartie(symbolesJoueur, boxs) {
+    const combinaisonsGagnantes = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+  
+    for (let symbole of symbolesJoueur) {
+      for (let combinaison of combinaisonsGagnantes) {
+        if (
+          boxs[combinaison[0]].innerHTML === symbole &&
+          boxs[combinaison[1]].innerHTML === symbole &&
+          boxs[combinaison[2]].innerHTML === symbole
+        ) {
+          return combinaison;
+        }
+      }
+    }
+    
+    return null;
   }
-  if (boxs[3].innerHTML == joueur && boxs[4].innerHTML == joueur && boxs[5].innerHTML == joueur) {
-    return fini = true;
-  }
-  if (boxs[6].innerHTML == joueur && boxs[7].innerHTML == joueur && boxs[8].innerHTML == joueur) {
-    return fini = true;
-  }
-  if (boxs[0].innerHTML == joueur && boxs[3].innerHTML == joueur && boxs[6].innerHTML == joueur) {
-    return fini = true;
-  }
-  if (boxs[1].innerHTML == joueur && boxs[4].innerHTML == joueur && boxs[7].innerHTML == joueur) {
-    return fini = true;
-  }
-  if (boxs[2].innerHTML == joueur && boxs[5].innerHTML == joueur && boxs[8].innerHTML == joueur) {
-    return fini = true;
-  }
-  if (boxs[0].innerHTML == joueur && boxs[4].innerHTML == joueur && boxs[8].innerHTML == joueur) {
-    return fini = true;
-  }
-  if (boxs[2].innerHTML == joueur && boxs[4].innerHTML == joueur && boxs[6].innerHTML == joueur) {
-    return fini = true;
-  }
-  else return fini = false;
-
-}
 
 function main() {
   const h1 = document.createElement("h1");
@@ -38,7 +35,7 @@ function main() {
   statut.appendChild(p);
 
   var boxs = section.querySelectorAll(".carre");
-  var joueur = ["X", "O"];
+  var symbolesJoueur = ["X", "O"];
   var tour = 0;
   var fini = false;
 
@@ -48,26 +45,24 @@ function main() {
         
         if (fini == false) {
           //vérifie si la case a déjà été clické 
-          if (boxs[i].innerHTML == joueur[0] || boxs[i].innerHTML == joueur[1]) {
-            p.innerHTML = "Case occupée, c'est à vous joueur " + joueur[tour] + " !";
+          if (boxs[i].innerHTML == symbolesJoueur[0] || boxs[i].innerHTML == symbolesJoueur[1]) {
+            p.innerHTML = "Case occupée, c'est à vous joueur " + symbolesJoueur[tour] + " !";
           }
           else {
-            //choix de la case du joueur X ou O
-            boxs[i].innerHTML = joueur[tour];
+            boxs[i].innerHTML = symbolesJoueur[tour];
       
-            
-            fini = statutPartie(joueur[tour], section.querySelectorAll(".carre"));
-            if (fini) {
-              h1.innerHTML = "Joueur " + joueur[tour] + " a gagné la partie !"; 
+            const resultat = statutPartie(symbolesJoueur, boxs)
+            if (resultat != null) {
+              fini = true; 
+              h1.innerHTML = "Joueur " + symbolesJoueur[tour] + " a gagné la partie !"; 
               p.innerHTML = '<a href="">Rejouer</a>';
 
             }
             else{
               tour++;
               tour = tour % 2;
-              console.log(fini);
 
-              p.innerHTML = "Au joueur " + joueur[tour] + " de jouer";
+              p.innerHTML = "Au joueur " + symbolesJoueur[tour] + " de jouer";
             }
             
             
