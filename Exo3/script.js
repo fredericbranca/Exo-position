@@ -59,7 +59,7 @@ function main() {
             fini = statutPartie(joueur[tour], section.querySelectorAll(".carre"));
             if (fini) {
               h1.innerHTML = "Joueur " + joueur[tour] + " a gagné la partie !"; 
-              p.innerHTML = "ajouter clic rejouer";
+              p.innerHTML = '<a href="">Rejouer</a>';
 
             }
             else{
