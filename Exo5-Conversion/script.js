@@ -15,19 +15,30 @@ var div = document.createElement("div");
 div.id = "input";
 conversion.appendChild(div);
 
-//Création élement <input> avec class="champ" puis l'ajoute à la div créée juste avant
-var form = document.createElement("input");
-form.className = "champ";
-div.appendChild(form);
+//Création élement <input> avec class="champ", puis l'ajoute à la div créée juste avant
+const euros = document.createElement("input");
+// euros.type = "number"; //alternatif pour accepter uniquement une valeur numérique
+euros.min = 0.01;
+euros.step = 0.01;
+euros.className = "champ";
+div.appendChild(euros);
 
-//Création nouvelle div pour l'affichage de la conversion (sous l'input)
-var div1 = document.createElement("div");
-div1.id = "franc";
-div1.innerHTML = "francs";
-conversion.appendChild(div1);
+//Création nouvelle div pour l'affichage en franc (sous l'input)
+var franc = document.createElement("div");
+franc.id = "franc";
+franc.innerHTML = "francs";
+conversion.appendChild(franc);
 
+//Ajout d'un écouteur d'évènement pour mettre à jour la valeur en franc en temps réel
+euros.addEventListener("input", function() {
+    let euroValue = euros.value;
 
-form.addEventListener("onKeyPress", (event) => {
-    div1.innerHTML = form.value + "francs";
-
+    //vérifie si la valeur entrée est numérique avec isNaN. La propriété globale NaN (Not a Number) est une valeur utilisée pour représenter une quantité qui n'est pas un nombre ()
+    if (isNaN(euroValue)) {
+        franc.textContent = "Veuillez entrer une valeur numérique";
+    }
+    else {
+        let francValue = euroValue * 6.55957;
+        franc.textContent = francValue.toFixed(2) + " francs"; //toFixed(2) pour afficher avec 2 décimales
+    }
 });
